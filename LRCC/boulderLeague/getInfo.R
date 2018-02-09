@@ -20,6 +20,13 @@ listAllProblems <- function() {
   return(allProblems)
 }
 
+probsByWeek <- function(week) {
+  week <- stringr::str_sub(week, 6, 6)
+  allProbs <- listAllProblems()
+  probsVec <- allProbs[allProbs$Week == week, 1]
+  return(probsVec)
+}
+
 compScore <- function(handicap, grade, attempts) {
   x <- 0
   if (is.na(attempts)) {x <- x + 0}

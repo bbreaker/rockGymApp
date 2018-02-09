@@ -1,4 +1,4 @@
-pacman::p_load(shiny, markdown, ggplot2, dplyr, scales)
+pacman::p_load(shiny, markdown, ggplot2, dplyr, scales, readr, stringr)
 
 source("getInfo.R")
 
@@ -15,11 +15,23 @@ ui <- navbarPage("LRCC Boulder League",
       )
     )
   ),
+  tabPanel("Choose a Week",
+    sidebarLayout(
+      sidebarPanel(
+        selectInput("week", "What week are you entering info for?",
+                    choices = paste0("Week ", seq(1, 8, 1))),
+        submitButton("Pick a week!")
+      ),
+      mainPanel(
+        textOutput("weekMessage")
+      )
+    )
+  ),
   tabPanel("Enter Problems",
     sidebarLayout(
       sidebarPanel(
         selectInput("climber", "Who are you?", choices = listPeeps()),
-        selectInput("problem", "What problem did you finish?", choices = listProblems()),
+        uiOutput("problem"),
         numericInput("attempts", "How many attempts to finish it?", value = NA),
         submitButton("Send it in!")
     ),
@@ -46,7 +58,6 @@ server <- function(input, output, session) {
       newMessage <- paste0("Thanks, ", input$name, "!. You've been entered. Go climb!")
       write.csv(allInfo, "data/people", row.names = FALSE)
     }
-    updateTextInput(session, "climber")
     print(newMessage)
   })
   
@@ -57,6 +68,10 @@ server <- function(input, output, session) {
     } else {
       updateSelectInput(session, "climber", "Who are you?", choices = listPeeps())
     }
+  })
+  
+  output$problem <- renderUI({
+    selectInput("problem", "What problem did you finish?", choices = probsByWeek(input$week))
   })
 
   output$allPlot <- renderPlot({

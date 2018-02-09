@@ -1,10 +1,17 @@
-Problem, Grade
-"Black Mamba", 7
-"Cake Shoes", 0
-"Ernest P Worrell", 4
-"Stink Finger", 5
-"Karate Monkey", 2
-"Porkeys Revenge", 1
-"Rainbow Roosters", 3
-"Phi Slamma Jamma", 8
-"Capt Spunky Buns", 6
+Problem, Grade, Week
+"Black Mamba", 7, 1
+"Cake Shoes", 0, 1
+"Ernest P Worrell", 4, 1
+"Stink Finger", 5, 1
+"Karate Monkey", 2, 1
+"Porkeys Revenge", 1, 1
+"Rainbow Roosters", 3, 1
+"Phi Slamma Jamma", 8, 1
+"Capt Spunky Buns", 6, 1
+"Hand Grenade", 4, 2
+"Horse Poo", 1, 2
+"Big Bird", 3, 2
+"Nutty Professor", 7, 2
+"Big Hands", 5, 2
+"Sound Pony", 2, 2
+"Excelsior", 5, 2
